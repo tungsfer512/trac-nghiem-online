@@ -1,0 +1,31 @@
+version: '3.8'
+
+networks:
+  tracnghiem:
+    driver: bridge
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:80"
+    volumes:
+      - ./resource:/var/www/html
+    restart: always
+    networks:
+      - tracnghiem
+  mysql:
+    image: mysql:8
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: mysql
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysql
+    ports:
+      - 3308:3306
+    volumes:
+      - /mysql-data:/var/lib/mysql
+    restart: always
+    networks:
+      - tracnghiem
