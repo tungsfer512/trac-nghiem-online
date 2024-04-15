@@ -51,29 +51,3 @@ Xem thêm tại [CHANGELOG](CHANGELOG.md)
     - Hỡ trợ nhiều dạng thông tin có trong câu hỏi hơn như âm thanh, video...
 
 [Hướng dẫn sử dụng](GUIDE.md)
-
-## Ảnh Demo (Chụp Từ v3.3.0)
-
-![INSTALL](demo-images/install.png)
-![Đăng nhập 1](demo-images/login-1.PNG)
-![Đăng nhập 2](demo-images/login-2.PNG)
-![DEMO](demo-images/1.png)
-![DEMO](demo-images/4.1.png)
-![DEMO](demo-images/4.2.png)
-![DEMO](demo-images/4.3.png)
-![DEMO](demo-images/2.png)
-![DEMO](demo-images/3.png)
-![DEMO](demo-images/5.png)
-![DEMO](demo-images/6.png)
-![DEMO](demo-images/7.png)
-![DEMO](demo-images/9.png)
-![DEMO](demo-images/8.png)
-![DEMO](demo-images/10.png)
-![DEMO](demo-images/11.png)
-![DEMO](demo-images/12.png)
-
-## Lưu ý
-
-Trên GitHub chỉ lưu từ v2.0.1 trở đi.  
-v2.0 (19/09/2017)  
-v1.0 (16/05/2017)
