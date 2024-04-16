@@ -118,7 +118,7 @@ function get_list_students() {
         },
         {
             "data": "gender_detail",
-            "title": "Giớp Tính"
+            "title": "Giới Tính"
         },
         {
             "data": "birthday",

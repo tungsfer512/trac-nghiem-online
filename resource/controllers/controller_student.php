@@ -219,7 +219,7 @@ class Controller_Student
         $model = new Model_Student();
         $test = $model->get_result_quest($this->info['doing_exam'], $this->info['ID']);
         $test_code = $test[0]->test_code;
-        $total_questions = $test[0]->total_questions;
+        $total_questions = (int)($test[0]->total_questions);
         $correct = 0;
         $c = 10/$total_questions;
         foreach ($test as $t) {
@@ -227,11 +227,12 @@ class Controller_Student
                 $correct++;
             }
         }
-        $score = $correct * $c;
-        $score_detail = $correct.'/'.$total_questions;
-        $model->insert_score($this->info['ID'], $test_code, $score, $score_detail);
+        $score = round($correct * $c, 2);
+        $score_detail = (string)($correct).'/'.(string)($total_questions);
+        $result = $model->insert_score((int)($this->info['ID']), (int)$test_code, (string)$score, (string)$score_detail);
         $model->reset_doing_exam($this->info['ID']);
         header("Location: /index.php?action=show_result&test_code=".$test_code);
+        // echo json_encode((string)$score_detail);
     }
     public function toggle_sidebar()
     {

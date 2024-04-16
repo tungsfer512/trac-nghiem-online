@@ -163,14 +163,13 @@ class Model_Student extends Database
     public function get_list_tests()
     {
         $sql = "
-        SELECT DISTINCT tests.test_code,tests.test_name,tests.password,tests.total_questions,tests.time_to_do,
-        tests.note,grades.detail as grade,subjects.subject_detail,statuses.status_id,
-        statuses.detail as status FROM `tests`
+        SELECT DISTINCT tests.test_code,tests.test_name,tests.password,tests.total_questions,tests.time_to_do,tests.note,tests.timest,grades.detail as grade,subjects.subject_detail,statuses.status_id,
+        statuses.detail as status FROM tests
         INNER JOIN grades ON grades.grade_id = tests.grade_id
         INNER JOIN subjects ON subjects.subject_id = tests.subject_id
         INNER JOIN statuses ON statuses.status_id = tests.status_id 
         WHERE statuses.status_id != 7
-        ORDER BY timest DESC";
+        ORDER BY tests.timest DESC";
 
         $this->set_query($sql);
         return $this->load_rows();
@@ -225,9 +224,9 @@ class Model_Student extends Database
         $sql = "SELECT DISTINCT student_test_detail.answer_a,student_test_detail.answer_b,
         student_test_detail.answer_c,student_test_detail.answer_d,
         student_test_detail.student_answer,questions.question_id,
-        student_test_detail.test_code,questions.question_content FROM student_test_detail
+        student_test_detail.test_code,questions.question_content, student_test_detail.ID FROM student_test_detail
         INNER JOIN questions ON student_test_detail.question_id = questions.question_id
-        WHERE test_code = :test_code AND student_id = :student_id ORDER BY ID";
+        WHERE test_code = :test_code AND student_id = :student_id ORDER BY student_test_detail.ID";
 
         $param = [ ':test_code' => $test_code, ':student_id' => $student_id ];
 
@@ -240,10 +239,10 @@ class Model_Student extends Database
         $sql = "SELECT DISTINCT student_test_detail.answer_a,student_test_detail.answer_b,
         student_test_detail.answer_c,student_test_detail.answer_d,student_test_detail.student_answer,
         questions.question_id,student_test_detail.test_code,questions.question_content,
-        questions.correct_answer,tests.total_questions FROM student_test_detail
+        questions.correct_answer,tests.total_questions,student_test_detail.ID FROM student_test_detail
         INNER JOIN questions ON student_test_detail.question_id = questions.question_id
         INNER JOIN tests ON student_test_detail.test_code = tests.test_code
-        WHERE student_test_detail.test_code = :test_code AND student_id = :student_id ORDER BY ID";
+        WHERE student_test_detail.test_code = :test_code AND student_id = :student_id ORDER BY student_test_detail.ID";
 
         $param = [ ':test_code' => $test_code, ':student_id' => $student_id ];
 
@@ -286,10 +285,10 @@ class Model_Student extends Database
 
     public function insert_score($student_id, $test_code, $score, $score_detail)
     {
-        $sql = "INSERT INTO `scores` (`student_id`, `test_code`, `score_number`, `score_detail`, 
+        $sql = "INSERT INTO scores (`student_id`, `test_code`, `score_number`, `score_detail`, 
         completion_time) VALUES (:student_id, :test_code, :score, :score_detail, NOW())";
 
-        $param = [ ':student_id' => $student_id, ':test_code' => $test_code,
+        $param = [ ':student_id' => (int)$student_id, ':test_code' => (int)$test_code,
         ':score' => $score, ':score_detail' => $score_detail ];
 
         $this->set_query($sql, $param);

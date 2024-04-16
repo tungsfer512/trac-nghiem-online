@@ -488,7 +488,7 @@ class Controller_Admin
         unlink($_FILES['file']['name']);
         $count = 0;
         $err_list = '';
-        for ($i = 4; $i < count($sheetData); $i++) {
+        for ($i = 4; $i < count($sheetData) + 1; $i++) {
             if ($sheetData[$i]['A'] == '') {
                 continue;
             }
@@ -610,7 +610,7 @@ class Controller_Admin
         unlink($_FILES['file']['name']);
         $count = 0;
         $err_list = '';
-        for ($i = 4; $i < count($sheetData); $i++) {
+        for ($i = 4; $i < count($sheetData) + 1; $i++) {
             if ($sheetData[$i]['A'] == '') {
                 continue;
             }
@@ -776,7 +776,7 @@ class Controller_Admin
         unlink($_FILES['file']['name']);
         $count = 0;
         $err_list = '';
-        for ($i = 4; $i < count($sheetData); $i++) {
+        for ($i = 4; $i < count($sheetData) + 1; $i++) {
             if ($sheetData[$i]['A'] == '') {
                 continue;
             }
@@ -912,7 +912,7 @@ class Controller_Admin
         unlink($_FILES['file']['name']);
         $count = 0;
         $err_list = '';
-        for ($i = 4; $i <= count($sheetData); $i++) {
+        for ($i = 4; $i <= count($sheetData) + 1; $i++) {
             if ($sheetData[$i]['A'] == '') {
                 continue;
             }
