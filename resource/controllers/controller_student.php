@@ -27,6 +27,7 @@ class Controller_Student
         $this->info['grade_id'] = $user_info->grade_id;
         $this->info['doing_exam'] = $user_info->doing_exam;
         $this->info['time_remaining'] = $user_info->time_remaining;
+        $this->info['starting_time'] = $user_info->starting_time;
     }
     private function profiles()
     {
@@ -218,7 +219,7 @@ class Controller_Student
     {
         $model = new Model_Student();
         $test = $model->get_result_quest($this->info['doing_exam'], $this->info['ID']);
-        $test_code = $test[0]->test_code;
+        $test_code = $this->info['doing_exam'];
         $total_questions = (int)($test[0]->total_questions);
         $correct = 0;
         $c = 10/$total_questions;
@@ -232,7 +233,7 @@ class Controller_Student
         $result = $model->insert_score((int)($this->info['ID']), (int)$test_code, (string)$score, (string)$score_detail);
         $model->reset_doing_exam($this->info['ID']);
         header("Location: /index.php?action=show_result&test_code=".$test_code);
-        // echo json_encode((string)$score_detail);
+        // echo json_encode($this->info);
     }
     public function toggle_sidebar()
     {
@@ -273,7 +274,7 @@ class Controller_Student
             $time_string[] = explode(":", $this->info['time_remaining']);
             $min = $time_string[0][0];
             $sec = $time_string[0][1];
-            $view->show_exam($test, $min, $sec);
+            $view->show_exam($test, $min, $sec, $this->info['starting_time']);
         }
     }
     public function show_chat()
@@ -289,7 +290,7 @@ class Controller_Student
             $time_string[] = explode(":", $this->info['time_remaining']);
             $min = $time_string[0][0];
             $sec = $time_string[0][1];
-            $view->show_exam($test, $min, $sec);
+            $view->show_exam($test, $min, $sec, $this->info['starting_time']);
         }
     }
     public function show_all_chat()
@@ -332,7 +333,7 @@ class Controller_Student
             $time_string[] = explode(":", $this->info['time_remaining']);
             $min = $time_string[0][0];
             $sec = $time_string[0][1];
-            $view->show_exam($test, $min, $sec);
+            $view->show_exam($test, $min, $sec, $this->info['starting_time']);
         }
     }
 

@@ -121,7 +121,18 @@
 	<script>
 		var min = <?=$min?>;
 		var sec = <?=$sec?>;
+		var st = "<?=$st?>";
 		countdown();
+		function msToTime(s) {
+			var ms = s % 1000;
+			s = (s - ms) / 1000;
+			var secs = s % 60;
+			s = (s - secs) / 60;
+			var mins = s % 60;
+			var hrs = (s - mins) / 60;
+
+			return hrs + ':' + mins + ':' + secs;
+			}
 		$('input[type=radio]').on("change", function () {
 			var stt = $(this).data("stt");
 			var idquest = $(this).data("idquest");
@@ -138,26 +149,20 @@
 			};
 			$.post(url, data, success);
 		})
+		var start_time = new Date(st);
+		start_time.setHours(start_time.getHours() + 7);
+		var end_time = start_time
+		end_time.setSeconds(start_time.getSeconds() + (min * 60 + sec));
+		console.log(start_time)
+		console.log(min)
+		console.log(sec)
+		console.log(start_time.getSeconds() + (min * 60 + sec))
+		console.log(end_time)
 		function countdown() {
 			cdID = setInterval(function () {
-				if (sec == 0) {
-					min--;
-					sec = 60;
-				}
-				sec--;
-				if (min < 10) {
-					$('#timer').css('color', 'red');
-					min_text = '0' + min;
-				} else {
-					min_text = min;
-				}
-				if (sec < 10)
-					sec_text = '0' + sec;
-				else
-					sec_text = sec;
-				$('#timer').text(min_text + ':' + sec_text);
-				if (min < 0) {
-					alert('Hết giờ, hệ thống sẽ tự động nộp bài!');
+				const date = new Date();
+				$('#timer').text(msToTime(end_time-date));
+				if (date >= end_time) {
 					window.location.replace("/index.php?action=accept_test");
 				}
 			}, 1000);

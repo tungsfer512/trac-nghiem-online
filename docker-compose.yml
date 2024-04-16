@@ -18,10 +18,7 @@ services:
     image: mysql:8
     container_name: mysql
     environment:
-      MYSQL_ROOT_PASSWORD: mysql
-      MYSQL_DATABASE: mysql
-      MYSQL_USER: mysql
-      MYSQL_PASSWORD: mysql
+      MYSQL_ROOT_PASSWORD: mysql@ript@123
     ports:
       - 3308:3306
     volumes:

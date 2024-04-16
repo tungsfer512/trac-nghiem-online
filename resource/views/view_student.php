@@ -31,7 +31,7 @@ class View_Student
     {
         include 'res/templates/student/notifications.html';
     }
-    public function show_exam($test, $min, $sec)
+    public function show_exam($test, $min, $sec, $st)
     {
         include 'res/templates/student/exam.php';
     }

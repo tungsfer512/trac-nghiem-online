@@ -17,7 +17,7 @@ class Model_Student extends Database
         $sql = "SELECT DISTINCT students.student_id as ID,
         students.username,students.name,students.email,students.avatar,students.class_id,students.birthday,
         students.last_login,genders.gender_id,genders.gender_detail,classes.grade_id,students.doing_exam,
-        students.time_remaining FROM `students`
+        students.time_remaining,students.starting_time FROM `students`
         INNER JOIN genders ON genders.gender_id = students.gender_id
         INNER JOIN classes ON classes.class_id = students.class_id
         WHERE username = :username";
