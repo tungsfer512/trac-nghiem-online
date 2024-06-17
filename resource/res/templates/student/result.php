@@ -6,10 +6,10 @@
 			<div class="preload hidden" id="preload">
 				<img src="res/img/loading.gif" alt="">
 			</div>
-			<div id="recent_list" style="padding-bottom: 20px;">
+            <span class="title">Hoàn Thành Lúc: <?=$score->completion_time?></span><br />
+			{% comment %} <div id="recent_list" style="padding-bottom: 20px;">
 				<span class="title" style="color: #02796e;"><?=$score->score_number?> Điểm</span><br />
 				<span class="title" style="color: #02796e;">Đúng <?=$score->score_detail?> Câu</span><br />
-				<span class="title">Hoàn Thành Lúc: <?=$score->completion_time?></span><br />
 				<span class="title">CHI TIẾT BÀI THI</span><br />
                 <span class="title">Chú thích:<br />
                     <span style="color: green;">Màu xanh </span>là sinh viên chọn đúng đáp án <br />
@@ -158,7 +158,7 @@
                 }
             }
             ?>
-        </div>
+        </div> {% endcomment %}
     </div>
 </div>
 </div>
