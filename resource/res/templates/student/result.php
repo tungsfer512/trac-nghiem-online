@@ -7,23 +7,24 @@
 				<img src="res/img/loading.gif" alt="">
 			</div>
             <span class="title">Hoàn Thành Lúc: <?=$score->completion_time?></span><br />
-			{% comment %} <div id="recent_list" style="padding-bottom: 20px;">
-				<span class="title" style="color: #02796e;"><?=$score->score_number?> Điểm</span><br />
-				<span class="title" style="color: #02796e;">Đúng <?=$score->score_detail?> Câu</span><br />
-				<span class="title">CHI TIẾT BÀI THI</span><br />
-                <span class="title">Chú thích:<br />
-                    <span style="color: green;">Màu xanh </span>là sinh viên chọn đúng đáp án <br />
-                    <span style="color: red;">Màu đỏ </span> là đáp án sinh viên chọn sai<br />
-                    <span style="color: blue;">Màu xanh dương </span> là đáp án đúng của câu hỏi
-                </span>
-                <hr>
-            </div>
             <div id="recent">
                 <?php
                 if($result == null) {
                     echo '<span class="title">Bài Thi/Kiểm tra chưa được mở xem đáp án. Vui lòng liên hệ Giảng viên hoặc Quản trị viên.</span>';
                 } else {
-
+                    ?>
+                        <div id="recent_list" style="padding-bottom: 20px;">
+                            <span class="title" style="color: #02796e;"><?=$score->score_number?> Điểm</span><br />
+                            <span class="title" style="color: #02796e;">Đúng <?=$score->score_detail?> Câu</span><br />
+                            <span class="title">CHI TIẾT BÀI THI</span><br />
+                            <span class="title">Chú thích:<br />
+                                <span style="color: green;">Màu xanh </span>là sinh viên chọn đúng đáp án <br />
+                                <span style="color: red;">Màu đỏ </span> là đáp án sinh viên chọn sai<br />
+                                <span style="color: blue;">Màu xanh dương </span> là đáp án đúng của câu hỏi
+                            </span>
+                            <hr>
+                        </div>
+                    <?php
                  for($i = 0; $i < count($result); $i++) {
                     ?>
                     <div id="quest-<?=($i+1)?>" class="item-quest">
@@ -158,7 +159,7 @@
                 }
             }
             ?>
-        </div> {% endcomment %}
+        </div>
     </div>
 </div>
 </div>
